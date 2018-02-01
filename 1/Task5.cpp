@@ -20,10 +20,22 @@ void main()
 	int myArr[4][5] = {};
 	multiRandArr(myArr[0], ROW, COL);
 	multiPrintArr(myArr[0], ROW, COL);
-
+	cout << endl << endl;
+	int *ptr;
+	ptr = myArr[0]+COL;//Указатель на первую четную строку
+	while (ptr < (myArr[0] + ROW*COL - 1))
+	{
+		int *tmpPtr = ptr;
+		while (tmpPtr < (ptr + COL))
+		{
+			*tmpPtr = 0;
+			tmpPtr++;
+		}
+		ptr += 2*COL;
+	}
+	multiPrintArr(myArr[0], ROW, COL);
 	system("pause");
 }
-
 
 void randArr(int *a, int sizeArr) {
 	for (int i = 0; i<sizeArr; i++, a++)
@@ -44,4 +56,3 @@ void multiPrintArr(int *a, int row, int col) {
 		cout << endl;
 	}
 }
-
