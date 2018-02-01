@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <ctime>
-#define NSIZE 33
+#define NSIZE 23
 #define MSIZE 12
 using namespace std;
 void randArr(int *a, int sizeArr);
@@ -37,22 +37,17 @@ void main()
 	ptrA = aArr;
 	ptrB = bArr;
 	ptrC = cArr;
-	for (int i = 0; i < (MSIZE + NSIZE); i++, ptrC++) {  //
-		if (ptrB - 1 < &bArr[MSIZE - 1] && ptrA - 1 < &aArr[NSIZE - 1]) {//если ptrB не вышел за пределы В, и ptrA не вышел за пределы А
-			if (*ptrA <= *ptrB) {
-				*ptrC = *ptrA++;
-				continue;
-			}
-			else {
-				*ptrC = *ptrB++;
-				continue;
-			}
-		}
-		if (ptrB > &bArr[MSIZE - 1] && ptrA - 1 < &aArr[NSIZE - 1])//если ptrB вышел за пределы В, а ptrA  не вышел за пределы А
-			*ptrC = *ptrA++;
-		if (ptrA > &aArr[NSIZE - 1] && ptrB - 1 < &bArr[MSIZE - 1])
-			*ptrC = *ptrB++;
+	while (ptrB - 1 < bArr + MSIZE - 1 && ptrA - 1 < aArr + NSIZE - 1)//если ptrB не вышел за пределы В, и ptrA не вышел за пределы А
+	{
+		if (*ptrA <= *ptrB)
+			*ptrC++ = *ptrA++;
+		else *ptrC++ = *ptrB++;
 	}
+	while (ptrB > bArr+MSIZE - 1 && ptrA - 1 < aArr+NSIZE - 1)//если ptrB вышел за пределы В, а ptrA  не вышел за пределы А
+			*ptrC++ = *ptrA++;
+	if (ptrA > aArr+NSIZE - 1 && ptrB - 1 < bArr+MSIZE - 1)
+			*ptrC++ = *ptrB++;
+	
 	cout << endl << "Итоговый массив C[n+m]" << endl;
 	printArr(cArr, NSIZE + MSIZE);
 	system("pause");
