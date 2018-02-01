@@ -13,9 +13,8 @@
 #define NSIZE 7
 #define MSIZE 6
 using namespace std;
-void randArr(int a[], int sizeArr);
-void printArr(int a[], int sizeArr);
-void sortArr(int a[], int sizeArr);
+void randArr(int *a, int sizeArr);
+void printArr(int *a, int sizeArr);
 
 void main()
 {
@@ -77,36 +76,13 @@ void main()
 }
 
 
-void randArr(int a[], int sizeArr) {
-
-	int *ptr;
-	ptr = a;
-	for (int i = 0; i<sizeArr; i++, ptr++)
-		*ptr = rand() % 21 - 10;
+void randArr(int *a, int sizeArr) {	
+	for (int i = 0; i<sizeArr; i++, a++)
+		*a = rand() % 21 - 10;
 }
-void printArr(int a[], int sizeArr) {
-	int *ptr;
-	ptr = a;
-	for (int i = 0; i < sizeArr; i++, ptr++)
-		cout << *ptr << " ";
+void printArr(int *a, int sizeArr) {	
+	for (int i = 0; i < sizeArr; i++, a++)
+		cout << *a << " ";
 	cout << endl;
 }
-void sortArr(int a[], int sizeArr) {
-	bool flag = true;
-	int k = sizeArr - 1;
-	while (k > 0 && flag)// к - левая граница подмассива
-	{
-		int endI = -1;
-		flag = false;
-		for (int i = 0; i < k; i++)
-			if (a[i] > a[i + 1]) {
-				//Находим максимальный элемент в части массива от k до SIZE 
-				int tmp = a[i];
-				a[i] = a[i + 1];
-				a[i + 1] = tmp;
-				flag = true;
-				endI = i;
-			}
-		k = endI;
-	}
-}
+
