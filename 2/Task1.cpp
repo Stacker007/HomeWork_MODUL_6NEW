@@ -10,8 +10,8 @@
 
 #include <iostream>
 #include <ctime>
-#define NSIZE 7
-#define MSIZE 6
+#define NSIZE 5
+#define MSIZE 5
 using namespace std;
 void randArr(int *a, int sizeArr);
 void printArr(int *a, int sizeArr);
@@ -22,22 +22,21 @@ void main()
 	srand(time(0));
 	int arrA[NSIZE];
 	int arrB[MSIZE];
-	int arrC[MSIZE];
-	int arrD[NSIZE];
+	int arrC[NSIZE];
+	int arrD[MSIZE];
 	//Генерация  массива  А[n]:
 	//(Инициализируем случайными числами)
 	{
 		randArr(arrA, NSIZE);
 		cout << "Исходный массив А[n]:" << endl;
 		printArr(arrA, NSIZE);
-		
+
 	}
 	//Генерация  массива  B[m]:
 	{
 		randArr(arrB, MSIZE);
 		cout << "Исходный массив B[m]:" << endl;
 		printArr(arrB, MSIZE);
-		
 	}
 
 	int *ptrA, *ptrB, *ptrC, *ptrD;
@@ -66,21 +65,61 @@ void main()
 			}
 			ptrB++;
 		}
+		ptrA++;
 	}
+	if (colGeneral) {
+		cout << endl << "Массив общих значений C[]" << endl;
+		printArr(arrC, NSIZE);
+	}
+	else cout << endl << "Общих значений нет!" << endl;
 
-	
+/*
+	ptrA = arrA;
+	ptrB = arrB;
+	ptrD = arrD;
+	int different = 0;
+	while (ptrA < arrA + NSIZE)
+	{
+		bool flag = true;
+		int *tmpptr = arrD;
+		while (tmpptr < arrD + NSIZE)
+		{
+			if (*tmpptr == *ptrA) {
+				flag = false;
+				break;
+			}
+			tmpptr++;
+		}
+		while (flag && ptrB < arrB + MSIZE)
+		{
+			if (*ptrA == *ptrB) {
+				flag = false;
+				break;
+			}
+			ptrB++;
+		}
+		if (flag) {
+			*ptrD++ = *ptrA;
+			different = 0;
+		}
+		ptrA++;
+	}
+	if (different) {
+		cout << endl << "Массив различных значений D[]" << endl;
+		printArr(arrD, different);
+	}
+	else cout << endl << "Различных значений нет!" << endl;
 
-	cout << endl << "Итоговый массив C[]" << endl;
-	printArr(arrC, colGeneral);
+	*/
 	system("pause");
 }
 
 
-void randArr(int *a, int sizeArr) {	
+void randArr(int *a, int sizeArr) {
 	for (int i = 0; i<sizeArr; i++, a++)
 		*a = rand() % 21 - 10;
 }
-void printArr(int *a, int sizeArr) {	
+void printArr(int *a, int sizeArr) {
 	for (int i = 0; i < sizeArr; i++, a++)
 		cout << *a << " ";
 	cout << endl;
