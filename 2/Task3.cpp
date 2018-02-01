@@ -1,13 +1,15 @@
-/*2. Массив из 20-ти элементов заполнить случайными числами от 0 до 20.
+/*
+3. Массив из 20-ти элементов заполнить случайными числами от 0 до 20.
 Упорядочить элементы, стоящие на четных местах, по возрастанию, а на нечетных –
-по убыванию..*/
+по убыванию.
+*/
 
 #include <iostream>
 #include <ctime>
 #define SIZE 20
 using namespace std;
-void randArr(int a[], int sizeArr);
-void printArr(int a[], int sizeArr);
+void randArr(int *a, int sizeArr);
+void printArr(int *a, int sizeArr);
 
 
 void main()
@@ -16,28 +18,28 @@ void main()
 	srand(time(0));
 	int arrA[SIZE];
 	//Генерация массива А[n]:
-	
+
 	{
-		randArr(arrA, SIZE);		
+		randArr(arrA, SIZE);
 		cout << "Несортированный массив А[n]:" << endl;
 		printArr(arrA, SIZE);
 	}
 	int *oddPtr;
 	oddPtr = arrA;
-	
-	for (; oddPtr < arrA + SIZE-2; oddPtr+=2) //i-номер последнего из упорядоченных
+
+	for (; oddPtr < arrA + SIZE - 2; oddPtr += 2) //i-номер последнего из упорядоченных
 	{
-		int tmp = *(oddPtr+2); //сохранить копию вставляемого элемента
+		int tmp = *(oddPtr + 2); //сохранить копию вставляемого элемента
 		int *nowPtr;
 		nowPtr = oddPtr;//j = i; //j- индекс элемента, после которого может быть вставка
 		while (nowPtr >= arrA && *nowPtr>tmp) //пока не вышли за пределы и не найдено место
 		{
 			*(nowPtr + 2) = *nowPtr;// a[j + 1] = a[j]; //сдвиг элемента вправо
-			nowPtr-=2;
+			nowPtr -= 2;
 		}
 		*(nowPtr + 2) = tmp; //вставка на место
 	}
-	oddPtr = arrA+1;
+	oddPtr = arrA + 1;
 
 	for (; oddPtr < arrA + SIZE - 1; oddPtr += 2) //i-номер последнего из упорядоченных
 	{
@@ -56,21 +58,16 @@ void main()
 	printArr(arrA, SIZE);
 
 	system("pause");
-	
+
 }
 
 
-void randArr(int a[], int sizeArr) {
-
-	int *ptr;
-	ptr = a;
-	for (int i = 0; i<sizeArr; i++, ptr++)
-		*ptr = rand() % 21;
+void randArr(int *a, int sizeArr) {	
+	for (int i = 0; i<sizeArr; i++, a++)
+		*a = rand() % 21;
 }
-void printArr(int a[], int sizeArr) {
-	int *ptr;
-	ptr = a;
-	for (int i = 0; i < sizeArr; i++, ptr++)
-		cout << *ptr << " ";
+void printArr(int *a, int sizeArr) {	
+	for (int i = 0; i < sizeArr; i++, a++)
+		cout << *a << " ";
 	cout << endl;
 }
