@@ -9,6 +9,7 @@
 using namespace std;
 void randArr(int *a, int sizeArr);
 void printArr(int *a, int sizeArr);
+
 void sortArr(int a[], int sizeArr);
 
 void main()
@@ -25,13 +26,13 @@ void main()
 		sortArr(aArr, NSIZE);
 		cout << "Исходный массив А[n]:" << endl;
 		printArr(aArr, NSIZE);
+		cout << endl;
 	}
 	//Генерация сортированного массива  B[m]:
 	{randArr(bArr, MSIZE);
 	sortArr(bArr, MSIZE);
 	cout << "Исходный массив B[m]:" << endl;
 	printArr(bArr, MSIZE); }
-
 	int *ptrA, *ptrB, *ptrC;
 	ptrA = aArr;
 	ptrB = bArr;
