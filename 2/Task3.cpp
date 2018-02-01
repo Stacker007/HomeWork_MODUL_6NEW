@@ -25,9 +25,9 @@ void main()
 		printArr(arrA, SIZE);
 	}
 	int *oddPtr;
-	oddPtr = arrA;
+	
 
-	for (; oddPtr < arrA + SIZE - 2; oddPtr += 2) //i-номер последнего из упорядоченных
+	for (oddPtr = arrA; oddPtr < arrA + SIZE - 2; oddPtr += 2) //i-номер последнего из упорядоченных
 	{
 		int tmp = *(oddPtr + 2); //сохранить копию вставляемого элемента
 		int *nowPtr;
@@ -39,9 +39,9 @@ void main()
 		}
 		*(nowPtr + 2) = tmp; //вставка на место
 	}
-	oddPtr = arrA + 1;
+	
 
-	for (; oddPtr < arrA + SIZE - 1; oddPtr += 2) //i-номер последнего из упорядоченных
+	for (oddPtr = arrA + 1; oddPtr < arrA + SIZE - 1; oddPtr += 2) //i-номер последнего из упорядоченных
 	{
 		int tmp = *(oddPtr + 2); //сохранить копию вставляемого элемента
 		int *nowPtr;
@@ -71,3 +71,4 @@ void printArr(int *a, int sizeArr) {
 		cout << *a << " ";
 	cout << endl;
 }
+
