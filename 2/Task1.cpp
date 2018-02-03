@@ -10,8 +10,8 @@
 
 #include <iostream>
 #include <ctime>
-#define NSIZE 5
-#define MSIZE 5
+#define NSIZE 10
+#define MSIZE 10
 using namespace std;
 void randArr(int *a, int sizeArr);
 void printArr(int *a, int sizeArr);
@@ -23,7 +23,8 @@ int main()
 	int arrA[NSIZE];
 	int arrB[MSIZE];
 	int arrC[NSIZE];
-	int arrD[MSIZE];
+	//int arrD[MSIZE];
+    
 	//Генерация  массива  А[n]:
 	//(Инициализируем случайными числами)
 	{
@@ -39,37 +40,40 @@ int main()
 		printArr(arrB, MSIZE);
 	}
 
-	int *ptrA, *ptrB, *ptrC, *ptrD;
+	int *ptrA, *ptrB, *ptrC;/*, *ptrD;*/
 	ptrA = arrA;
 	ptrB = arrB;
 	ptrC = arrC;
 	int colGeneral = 0;
-	while (ptrA < arrA + NSIZE)
+	while (ptrA < (arrA + NSIZE))
 	{
 		bool flag = true;
 		int *tmpptr = arrC;
-		while (tmpptr < arrC + MSIZE)
+//Проход по массиву С (если в массиве С есть A[i], то выходим без проверки элементов В)
+		while (colGeneral && tmpptr < (arrC + colGeneral))
 		{
 			if (*tmpptr == *ptrA) {
 				flag = false;
-				break;
+				//break;
 			}
 			tmpptr++;
 		}
-		while (flag && ptrB < arrB + MSIZE)
+//Если в массиве В встречаем элемнет равный A[i], 
+//то записываем значение в очередную ячейку С
+		while (flag && ptrB < (arrB + MSIZE))
 		{
 			if (*ptrA == *ptrB) {
 				*ptrC++ = *ptrA;
 				colGeneral++;
-				break;
+				break;//Выход из цикла если если есть равные элементы
 			}
 			ptrB++;
 		}
-		ptrA++;
+		ptrA++;//переход к следующему элементу в А
 	}
 	if (colGeneral) {
 		cout << endl << "Массив общих значений C[]" << endl;
-		printArr(arrC, NSIZE);
+		printArr(arrC, colGeneral);
 	}
 	else cout << endl << "Общих значений нет!" << endl;
 
