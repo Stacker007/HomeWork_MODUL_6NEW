@@ -100,7 +100,7 @@ int main()
 			ptrB++;
 		}
 		if (flag) {
-			*ptrD++ = *ptrA;
+			*ptrD = *ptrA;
 			colGeneral++;
 		}
 		
