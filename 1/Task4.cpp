@@ -12,7 +12,7 @@ void printArr(int *a, int sizeArr);
 
 void sortArr(int a[], int sizeArr);
 
-void main()
+int main()
 {
 	setlocale(LC_ALL, "rus");
 	srand(time(0));
@@ -45,11 +45,12 @@ void main()
 	}
 	while (ptrB > bArr+MSIZE - 1 && ptrA - 1 < aArr+NSIZE - 1)//если ptrB вышел за пределы В, а ptrA  не вышел за пределы А
 			*ptrC++ = *ptrA++;
-	if (ptrA > aArr+NSIZE - 1 && ptrB - 1 < bArr+MSIZE - 1)
+	while (ptrA > aArr+NSIZE - 1 && ptrB - 1 < bArr+MSIZE - 1)
 			*ptrC++ = *ptrB++;
 	
 	cout << endl << "Итоговый массив C[n+m]" << endl;
 	printArr(cArr, NSIZE + MSIZE);
+	return 0;
 	system("pause");
 }
 
