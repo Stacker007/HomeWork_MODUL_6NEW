@@ -16,7 +16,7 @@ using namespace std;
 void randArr(int *a, int sizeArr);
 void printArr(int *a, int sizeArr);
 
-void main()
+int main()
 {
 	setlocale(LC_ALL, "rus");
 	srand(time(0));
@@ -111,7 +111,9 @@ void main()
 	else cout << endl << "Различных значений нет!" << endl;
 
 	*/
+	
 	system("pause");
+	return 0;
 }
 
 
