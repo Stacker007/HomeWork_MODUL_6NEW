@@ -42,21 +42,22 @@ int main()
 	int *ptrA, *ptrB, *ptrC, *ptrD;
 	ptrA = arrA;
 	
-	ptrC = arrC;
+	
 	int colGeneral = 0;
 	while (ptrA < (arrA + NSIZE))
 	{
+        ptrC = arrC;
 		ptrB = arrB;
 		bool flag = true;
-		int *tmpptr = arrC;
+		
 		//Проход по массиву С (если в массиве С есть A[i], то выходим без проверки элементов В)
-		while (colGeneral && tmpptr < (arrC + colGeneral))
+		while (colGeneral && ptrC < (arrC + colGeneral))
 		{
-			if (*tmpptr == *ptrA) {
+			if (*ptrC == *ptrA) {
 				flag = false;
 				break;
 			}
-			tmpptr++;
+			ptrC++;
 		}
 		//Если в массиве В встречаем элемнет равный A[i], 
 		//то записываем значение в очередную ячейку С
