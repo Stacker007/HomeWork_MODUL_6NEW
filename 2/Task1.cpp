@@ -84,20 +84,20 @@ int main()
 	{
 		ptrD = arrD;
 		ptrB = arrB;
-		bool flag = true;
-		while (ptrB < (arrB + MSIZE)) {//Проверяем отсутствие элемента в массиве B
-			if (*ptrB == *ptrA) {
-				flag = false;
-				break;
-			}
-			ptrB++;
-		}
-		while (flag && colGeneral && ptrD < (arrD + colGeneral)) {//Проверяем отсутствие элемента в массиве D
+		bool flag = true;		
+		while (colGeneral && ptrD < (arrD + colGeneral)) {//Проверяем отсутствие элемента в массиве D
 			if (*ptrD == *ptrA) {
 				flag = false;
 				break;
 			}
 			ptrD++;
+		}
+		while (flag && ptrB < (arrB + MSIZE)) {//Проверяем отсутствие элемента в массиве B
+			if (*ptrB == *ptrA) {
+				flag = false;
+				break;
+			}
+			ptrB++;
 		}
 		if (flag) {
 			*ptrD++ = *ptrA;
