@@ -23,15 +23,14 @@ int main()
 	int arrA[NSIZE];
 	int arrB[MSIZE];
 	int arrC[NSIZE];
-	//int arrD[MSIZE];
-    
+	int arrD[MSIZE];
+
 	//Генерация  массива  А[n]:
 	//(Инициализируем случайными числами)
 	{
 		randArr(arrA, NSIZE);
 		cout << "Исходный массив А[n]:" << endl;
 		printArr(arrA, NSIZE);
-
 	}
 	//Генерация  массива  B[m]:
 	{
@@ -40,26 +39,27 @@ int main()
 		printArr(arrB, MSIZE);
 	}
 
-	int *ptrA, *ptrB, *ptrC;/*, *ptrD;*/
+	int *ptrA, *ptrB, *ptrC, *ptrD;
 	ptrA = arrA;
-	ptrB = arrB;
+	
 	ptrC = arrC;
 	int colGeneral = 0;
 	while (ptrA < (arrA + NSIZE))
 	{
+		ptrB = arrB;
 		bool flag = true;
 		int *tmpptr = arrC;
-//Проход по массиву С (если в массиве С есть A[i], то выходим без проверки элементов В)
+		//Проход по массиву С (если в массиве С есть A[i], то выходим без проверки элементов В)
 		while (colGeneral && tmpptr < (arrC + colGeneral))
 		{
 			if (*tmpptr == *ptrA) {
 				flag = false;
-				//break;
+				break;
 			}
 			tmpptr++;
 		}
-//Если в массиве В встречаем элемнет равный A[i], 
-//то записываем значение в очередную ячейку С
+		//Если в массиве В встречаем элемнет равный A[i], 
+		//то записываем значение в очередную ячейку С
 		while (flag && ptrB < (arrB + MSIZE))
 		{
 			if (*ptrA == *ptrB) {
@@ -77,45 +77,42 @@ int main()
 	}
 	else cout << endl << "Общих значений нет!" << endl;
 
-/*
 	ptrA = arrA;
-	ptrB = arrB;
-	ptrD = arrD;
-	int different = 0;
-	while (ptrA < arrA + NSIZE)
+	
+	colGeneral = 0;
+	while (ptrA < (arrA + NSIZE))
 	{
+		ptrD = arrD;
+		ptrB = arrB;
 		bool flag = true;
-		int *tmpptr = arrD;
-		while (tmpptr < arrD + NSIZE)
-		{
-			if (*tmpptr == *ptrA) {
-				flag = false;
-				break;
-			}
-			tmpptr++;
-		}
-		while (flag && ptrB < arrB + MSIZE)
-		{
-			if (*ptrA == *ptrB) {
+		while (ptrB < (arrB + MSIZE)) {//Проверяем отсутствие элемента в массиве B
+			if (*ptrB == *ptrA) {
 				flag = false;
 				break;
 			}
 			ptrB++;
 		}
+		while (flag && colGeneral && ptrD < (arrD + colGeneral)) {//Проверяем отсутствие элемента в массиве D
+			if (*ptrD == *ptrA) {
+				flag = false;
+				break;
+			}
+			ptrD++;
+		}
 		if (flag) {
 			*ptrD++ = *ptrA;
-			different = 0;
+			colGeneral++;
 		}
-		ptrA++;
+		
+		ptrA++;//переход к следующему элементу в А
 	}
-	if (different) {
-		cout << endl << "Массив различных значений D[]" << endl;
-		printArr(arrD, different);
+	if (colGeneral) {
+		cout << endl << "Массив отличных значений D[]" << endl;
+		printArr(arrD, colGeneral);
 	}
-	else cout << endl << "Различных значений нет!" << endl;
-
-	*/
+	else cout << endl << "Отличных значений нет!" << endl;
 	
+
 	system("pause");
 	return 0;
 }
