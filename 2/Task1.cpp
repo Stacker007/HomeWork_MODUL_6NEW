@@ -23,7 +23,7 @@ int main()
 	int arrA[NSIZE];
 	int arrB[MSIZE];
 	int arrC[NSIZE];
-	int arrD[MSIZE];
+	int arrD[NSIZE];
 
 	//Генерация  массива  А[n]:
 	//(Инициализируем случайными числами)
